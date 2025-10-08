@@ -18,10 +18,12 @@ namespace PromoCodeFactory.WebHost.Controllers
         : ControllerBase
     {
         private readonly IRepository<Employee> _employeeRepository;
+        private readonly IRepository<Role> _roleRepository;
 
-        public EmployeesController(IRepository<Employee> employeeRepository)
+        public EmployeesController(IRepository<Employee> employeeRepository, IRepository<Role> roleRepository)
         {
             _employeeRepository = employeeRepository;
+            _roleRepository = roleRepository;
         }
 
         /// <summary>
@@ -48,7 +50,7 @@ namespace PromoCodeFactory.WebHost.Controllers
         /// Получить данные сотрудника по id
         /// </summary>
         /// <returns></returns>
-        [HttpGet("{id:guid}")]
+        [HttpGet("{id:guid}", Name = "GetEmployeeById")]
         public async Task<ActionResult<EmployeeResponse>> GetEmployeeByIdAsync(Guid id)
         {
             var employee = await _employeeRepository.GetByIdAsync(id);
@@ -70,6 +72,71 @@ namespace PromoCodeFactory.WebHost.Controllers
             };
 
             return employeeModel;
+        }
+
+        /// <summary>
+        /// Создать нового сотрудника
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<ActionResult> CreateEmployee([FromBody] CreateEmployeeRequest request)
+        {
+            if (request == null)
+                return BadRequest();
+
+            var employee = new Employee
+            {
+                Email = request.Email,
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                AppliedPromocodesCount = request.AppliedPromocodesCount,
+                Role = await _roleRepository.GetByIdAsync(request.RolesId)
+            };
+
+            await _employeeRepository.AddAsync(employee);
+
+            return CreatedAtRoute("GetEmployeeById", new { id = employee.Id }, null);
+        }
+
+        /// <summary>
+        /// Обновить данные о сотруднике
+        /// </summary>
+        /// <returns></returns>
+        [HttpPut]
+        public async Task<ActionResult> UpdateEmployee([FromBody] UpdateEmployeeRequest request)
+        {
+            if (request == null)
+                return BadRequest();
+
+            var employee = await _employeeRepository.GetByIdAsync(request.Id);
+            if (employee == null)
+                return NotFound();
+
+            employee.Email = request.Email;
+            employee.FirstName = request.FirstName;
+            employee.LastName = request.LastName;
+            employee.AppliedPromocodesCount = request.AppliedPromocodesCount;
+            employee.Role = await _roleRepository.GetByIdAsync(request.RolesId);
+
+            await _employeeRepository.UpdateAsync(employee);
+
+            return NoContent();
+        }
+
+        /// <summary>
+        /// Удалить сотрудника по Id
+        /// </summary>
+        /// <returns></returns>
+        [HttpDelete("{id:guid}")]
+        public async Task<ActionResult> DeleteEmployee(Guid id)
+        {
+            var employee = await _employeeRepository.GetByIdAsync(id);
+            if (employee == null)
+                return NotFound();
+
+            await _employeeRepository.DeleteAsync(id);
+
+            return NoContent();
         }
     }
 }
