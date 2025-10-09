@@ -3,3 +3,5 @@
 ################################################################################
 
 /Homeworks/EF/src/PromoCodeFactory.WebHost/PromoCodeFactory.db
+/Homeworks/EF/src/PromoCodeFactory.WebHost/PromoCodeFactory.db-shm
+/Homeworks/EF/src/PromoCodeFactory.WebHost/PromoCodeFactory.db-wal
