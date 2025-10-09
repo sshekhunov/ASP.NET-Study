@@ -24,5 +24,8 @@ namespace PromoCodeFactory.Core.Domain.PromoCodeManagement
 
         public Guid CustomerId { get; set; }
         public Customer Customer { get; set; }
+
+        public string Note { get; set; }
+
     }
 }

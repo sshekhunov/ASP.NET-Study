@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PromoCodeFactory.DataAccess.Contexts;
 
@@ -10,9 +11,11 @@ using PromoCodeFactory.DataAccess.Contexts;
 namespace PromoCodeFactory.DataAccess.Migrations
 {
     [DbContext(typeof(PromoDbContext))]
-    partial class PromoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251009153251_Promocode_Note")]
+    partial class Promocode_Note
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.9");
