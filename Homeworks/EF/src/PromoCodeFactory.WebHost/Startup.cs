@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PromoCodeFactory.Core.Abstractions.Repositories;
+using PromoCodeFactory.Core.Domain.Administration;
 using PromoCodeFactory.DataAccess.Contexts;
 using PromoCodeFactory.DataAccess.Extensions;
 using PromoCodeFactory.DataAccess.Repositories;
@@ -30,6 +31,11 @@ namespace PromoCodeFactory.WebHost
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IPreferenceRepository, PreferenceRepository>();
             services.AddScoped<IPromoCodeRepository, PromoCodeRepository>();
+            
+            services.AddScoped<IRepository<Employee>>(provider => 
+                new EFRepository<Employee>(provider.GetRequiredService<PromoDbContext>()));
+            services.AddScoped<IRepository<Role>>(provider => 
+                new EFRepository<Role>(provider.GetRequiredService<PromoDbContext>()));
 
             services.AddOpenApiDocument(options =>
             {

@@ -47,7 +47,7 @@ namespace PromoCodeFactory.WebHost.Controllers
         /// </summary>
         /// <param name="id">Идентификатор клиента</param>
         /// <returns>Данные клиента с промокодами и предпочтениями</returns>
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetCustomer")]
         public async Task<ActionResult<CustomerResponse>> GetCustomerAsync(Guid id)
         {
             var customer = await _customerRepository.GetByIdWithPromoCodesAsync(id);
@@ -119,7 +119,7 @@ namespace PromoCodeFactory.WebHost.Controllers
                 await _customerRepository.AddCustomerPreferencesAsync(customerPreferences);
             }
 
-            return CreatedAtAction(nameof(GetCustomerAsync), new { id = customer.Id }, customer);
+            return CreatedAtAction("GetCustomer", new { id = customer.Id }, null);
         }
 
         /// <summary>
