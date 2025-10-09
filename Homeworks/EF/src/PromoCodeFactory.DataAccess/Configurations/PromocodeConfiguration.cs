@@ -26,17 +26,14 @@ namespace PromoCodeFactory.DataAccess.Configurations
             builder.Property(p => p.EndDate)
                 .IsRequired();
 
-            // Configure many-to-one relationship with Preference
             builder.HasOne(pc => pc.Preference)
                 .WithMany()
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // Configure many-to-one relationship with Customer
             builder.HasOne(pc => pc.Customer)
                 .WithMany(c => c.PromoCodes)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // Configure many-to-one relationship with Employee (PartnerManager)
             builder.HasOne(pc => pc.PartnerManager)
                 .WithMany()
                 .OnDelete(DeleteBehavior.Restrict);

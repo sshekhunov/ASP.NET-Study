@@ -77,12 +77,59 @@ namespace PromoCodeFactory.DataAccess.Data
                         Id = customerId,
                         Email = "ivan_sergeev@mail.ru",
                         FirstName = "Иван",
-                        LastName = "Петров",
-                        //TODO: Добавить предзаполненный список предпочтений
+                        LastName = "Петров"
                     }
                 };
 
                 return customers;
+            }
+        }
+
+        public static IEnumerable<PromoCode> Promocodes
+        {
+            get
+            {
+                var promocodes = new List<PromoCode>()
+                {
+                    new PromoCode()
+                    {
+                        Id = Guid.Parse("d1f1c8e2-5f4e-4c3b-9a7e-1c2b3d4e5f60"),
+                        Code = "PROMO123",
+                        BeginDate = DateTime.UtcNow.AddDays(-10),
+                        EndDate = DateTime.UtcNow.AddDays(20),
+                        PartnerManager = Employees.FirstOrDefault(e => e.Id == Guid.Parse("f766e2bf-340a-46ea-bff3-f1700b435895")),
+                        PartnerName = "Партнер А",
+                        Preference = Preferences.FirstOrDefault(p => p.Id == Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef99c")),
+                        ServiceInfo = "Скидка 10% на первый заказ",
+                        Customer = Customers.FirstOrDefault(c => c.Id == Guid.Parse("a6c8c6b1-4349-45b0-ab31-244740aaf0f0"))
+                    }
+                }; 
+                
+                return promocodes;
+            }
+        }
+
+        public static IEnumerable<CustomerPreference> CustomerPreferences
+        {
+            get
+            {
+                var promocodes = new List<CustomerPreference>()
+                {
+                    new CustomerPreference()
+                    {
+                        Id = Guid.Parse("b1e2c3d4-e5f6-7a8b-9c0d-e1f2a3b4c5d6"),
+                        Preference = Preferences.FirstOrDefault(p => p.Id == Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef99c")),
+                        Customer = Customers.FirstOrDefault(c => c.Id == Guid.Parse("a6c8c6b1-4349-45b0-ab31-244740aaf0f0"))
+                    },
+                    new CustomerPreference()
+                    {
+                        Id = Guid.Parse("c2d3e4f5-6a7b-8c9d-0e1f-2a3b4c5d6e7f"),
+                        Preference = Preferences.FirstOrDefault(p => p.Id == Guid.Parse("c4bda62e-fc74-4256-a956-4760b3858cbd")),
+                        Customer = Customers.FirstOrDefault(c => c.Id == Guid.Parse("a6c8c6b1-4349-45b0-ab31-244740aaf0f0"))
+                    }
+                };
+
+                return promocodes;
             }
         }
     }
