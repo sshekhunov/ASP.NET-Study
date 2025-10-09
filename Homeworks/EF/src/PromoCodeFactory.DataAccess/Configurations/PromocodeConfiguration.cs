@@ -32,6 +32,7 @@ namespace PromoCodeFactory.DataAccess.Configurations
 
             builder.HasOne(pc => pc.Customer)
                 .WithMany(c => c.PromoCodes)
+                .HasForeignKey(pc => pc.CustomerId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(pc => pc.PartnerManager)

@@ -19,9 +19,9 @@ namespace PromoCodeFactory.DataAccess.Repositories
             _entitySet = _context.Set<T>();
         }
 
-        public Task<IList<T>> GetAllAsync()
+        public async Task<IList<T>> GetAllAsync()
         {
-            return null;
+            return await _entitySet.ToListAsync();
         }
 
         public async Task<T> GetByIdAsync(Guid id)
