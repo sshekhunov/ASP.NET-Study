@@ -29,6 +29,7 @@ namespace PromoCodeFactory.WebHost
 
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IPreferenceRepository, PreferenceRepository>();
+            services.AddScoped<IPromoCodeRepository, PromoCodeRepository>();
 
             services.AddOpenApiDocument(options =>
             {

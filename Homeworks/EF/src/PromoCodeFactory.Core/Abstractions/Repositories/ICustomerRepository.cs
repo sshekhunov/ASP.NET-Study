@@ -12,5 +12,6 @@ namespace PromoCodeFactory.Core.Abstractions.Repositories
         Task AddCustomerPreferencesAsync(IList<CustomerPreference> preferences);
         Task RemoveCustomerPreferencesAsync(Guid customerId);
         Task RemoveCustomerPromoCodesAsync(Guid customerId);
+        Task<IList<Customer>> GetCustomersByPreferenceNameAsync(string preferenceName);
     }
 }

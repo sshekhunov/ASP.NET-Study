@@ -58,5 +58,14 @@ namespace PromoCodeFactory.DataAccess.Repositories
             _context.PromoCodes.RemoveRange(promoCodes);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<IList<Customer>> GetCustomersByPreferenceNameAsync(string preferenceName)
+        {
+            return await _context.Customers
+                .Include(c => c.Preferences)
+                .ThenInclude(cp => cp.Preference)
+                .Where(c => c.Preferences.Any(cp => cp.Preference.Name == preferenceName))
+                .ToListAsync();
+        }
     }
 }

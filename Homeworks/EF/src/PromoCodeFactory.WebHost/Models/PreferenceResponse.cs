@@ -8,3 +8,4 @@ namespace PromoCodeFactory.WebHost.Models
         public string Name { get; set; }
     }
 }
+
