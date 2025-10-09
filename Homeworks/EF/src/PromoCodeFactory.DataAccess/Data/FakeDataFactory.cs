@@ -113,23 +113,27 @@ namespace PromoCodeFactory.DataAccess.Data
         {
             get
             {
-                var promocodes = new List<CustomerPreference>()
+                var customerPreferences = new List<CustomerPreference>()
                 {
                     new CustomerPreference()
                     {
                         Id = Guid.Parse("b1e2c3d4-e5f6-7a8b-9c0d-e1f2a3b4c5d6"),
+                        CustomerId = Guid.Parse("a6c8c6b1-4349-45b0-ab31-244740aaf0f0"),
+                        PreferenceId = Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef99c"),
                         Preference = Preferences.FirstOrDefault(p => p.Id == Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef99c")),
                         Customer = Customers.FirstOrDefault(c => c.Id == Guid.Parse("a6c8c6b1-4349-45b0-ab31-244740aaf0f0"))
                     },
                     new CustomerPreference()
                     {
                         Id = Guid.Parse("c2d3e4f5-6a7b-8c9d-0e1f-2a3b4c5d6e7f"),
+                        CustomerId = Guid.Parse("a6c8c6b1-4349-45b0-ab31-244740aaf0f0"),
+                        PreferenceId = Guid.Parse("c4bda62e-fc74-4256-a956-4760b3858cbd"),
                         Preference = Preferences.FirstOrDefault(p => p.Id == Guid.Parse("c4bda62e-fc74-4256-a956-4760b3858cbd")),
                         Customer = Customers.FirstOrDefault(c => c.Id == Guid.Parse("a6c8c6b1-4349-45b0-ab31-244740aaf0f0"))
                     }
                 };
 
-                return promocodes;
+                return customerPreferences;
             }
         }
     }

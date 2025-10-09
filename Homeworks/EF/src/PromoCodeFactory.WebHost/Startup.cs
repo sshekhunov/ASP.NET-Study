@@ -10,6 +10,7 @@ using PromoCodeFactory.Core.Domain.PromoCodeManagement;
 using PromoCodeFactory.DataAccess.Data;
 using PromoCodeFactory.DataAccess.Repositories;
 using PromoCodeFactory.DataAccess.Contexts;
+using PromoCodeFactory.DataAccess.Extensions;
 
 namespace PromoCodeFactory.WebHost
 {
@@ -58,6 +59,12 @@ namespace PromoCodeFactory.WebHost
             else
             {
                 app.UseHsts();
+            }
+
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<PromoDbContext>();
+                context.SeedAsync().Wait();
             }
 
             app.UseOpenApi();
