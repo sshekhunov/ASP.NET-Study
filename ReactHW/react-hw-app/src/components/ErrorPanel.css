@@ -1,0 +1,19 @@
+.error-panel {
+  background-color: #f44336;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+  text-align: left;
+}
+
+.error-panel h2 {
+  margin-top: 0;
+  color: white;
+}
+
+.error-panel p {
+  margin: 0;
+  font-size: 16px;
+}
+
