@@ -1,4 +1,4 @@
-import './ErrorPanel.css'
+import './ErrorPanel.css';
 
 interface ErrorPanelProps {
   error: string
@@ -13,5 +13,5 @@ function ErrorPanel({ error }: ErrorPanelProps) {
   )
 }
 
-export default ErrorPanel
+export default ErrorPanel;
 

@@ -1,28 +1,28 @@
-import { useState } from 'react'
-import './App.css'
-import FactsPanel from './components/FactsPanel'
-import ErrorPanel from './components/ErrorPanel'
-import { fetchCatFacts, type CatFact } from './services/catFactsService'
+import { useState } from 'react';
+import './App.css';
+import FactsPanel from './components/FactsPanel';
+import ErrorPanel from './components/ErrorPanel';
+import { fetchCatFacts, type CatFact } from './services/catFactsService';
 
 function App() {
-  const [facts, setFacts] = useState<CatFact[]>([])
-  const [error, setError] = useState<string | null>(null)
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [facts, setFacts] = useState<CatFact[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleFetch = async () => {
     try {
-      setIsLoading(true)
-      setError(null)
+      setIsLoading(true);
+      setError(null);
       
-      const data = await fetchCatFacts()
-      setFacts(data)
+      const data = await fetchCatFacts();
+      setFacts(data);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Unknown error')
-      setFacts([])
+      setError(err instanceof Error ? err.message : 'Unknown error');
+      setFacts([]);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <div className="app">
@@ -36,4 +36,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

@@ -1,8 +1,8 @@
-import './FactsPanel.css'
+import './FactsPanel.css';
 
 interface FactsPanelProps {
   facts: Array<{
-    fact: string
+    fact: string,
     length: number
   }>
 }
@@ -20,5 +20,5 @@ function FactsPanel({ facts }: FactsPanelProps) {
   )
 }
 
-export default FactsPanel
+export default FactsPanel;
 
